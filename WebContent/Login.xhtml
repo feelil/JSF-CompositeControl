@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+
+	<ui:composition template="PageTemplates/loginMasterPage.xhtml">
+ 		
+		<ui:define name="content">
+		
+			<h:form id="loginForm">
+
+				<div class="form-group">
+					<h:outputLabel value="Kullanıcı Adı" />
+					<h:inputText id="username" value="#{login.userName}"
+						styleClass="form-control "></h:inputText>
+					<h:message for="username"></h:message>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Şifre " />
+					<h:inputSecret id="password" value="#{login.passWord}"
+						styleClass="form-control "></h:inputSecret>
+					<h:message for="password"></h:message>
+				</div>
+				<div class="form-group">
+
+
+						
+					<h:commandButton styleClass="btn btn-primary"
+						action="#{login.validateUsernamePassword}" value="Giriş"></h:commandButton>
+						
+						
+						
+				</div>
+			</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

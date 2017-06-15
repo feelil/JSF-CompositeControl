@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+		<ui:composition template="/PageTemplates/masterPage.xhtml">
+
+		<ui:define name="content">
+  
+  	<h:form id="moneyTransferFormConfirm">
+  
+  
+  <div class="panel panel-default">
+    <div class="panel-body"><h:outputText value="#{moneyOrderBean.sourceAccount.ibanNumber}"></h:outputText></div>
+      <div class="panel-body"><h:outputText value="#{moneyOrderBean.targetIBAN}"></h:outputText></div>
+        <div class="panel-body"><h:outputText value="#{moneyOrderBean.amount}"></h:outputText></div>
+        <div class="panel-body"><h:outputText value="#{moneyOrderBean.selectedDate}">
+        	<f:convertDateTime pattern="yyyy-MM-dd" />
+        </h:outputText></div>
+        <div class="panel-body"><h:outputText value="#{moneyOrderBean.nextPage}"></h:outputText></div>
+          <div class="panel-body"><h:outputText value="#{moneyOrderBean.explanation}"></h:outputText></div>
+          <div class="panel-body"><h:outputText value="#{moneyOrderBean.OID}"></h:outputText></div>
+          
+          <div class="form-group">
+				
+					
+					<h:commandButton styleClass="btn btn-primary" action="#{moneyOrderBean.execute}"
+			value="İşlemi Tamamla"></h:commandButton>
+			</div>
+          
+  </div>
+  </h:form>
+</ui:define>
+		</ui:composition>
+				
+			
+	
+
+</h:body>
+</html>

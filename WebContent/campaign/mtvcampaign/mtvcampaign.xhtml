@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:my="http://java.sun.com/jsf/composite/components">
+    <h:head></h:head>
+<h:body>
+		
+
+<f:event listener="#{mtvCampaignBean.initConversation}"  type="preRenderView"></f:event>
+		
+	    
+		<h:form>
+		<br />
+				WellCome TO Campagn Page 1 :
+				<br />
+				 <h:inputText value="#{mtvCampaignBean.campaignName}"></h:inputText>
+				<br />
+			<h:commandButton value="Devam" action="mtvcampaignP2"		styleClass="btn btn-primary" />
+
+		</h:form>
+
+
+
+</h:body>
+</html>

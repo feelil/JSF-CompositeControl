@@ -1,0 +1,27 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://java.sun.com/jsf/composite">
+	
+	
+	<cc:interface>
+		<cc:attribute name="value" shortDescription="Date Area" required="true"/>
+		<cc:attribute name="styleClass" required="false" />		
+		<cc:attribute name="label" required="false" default="Alıcı IBAN" />		
+	</cc:interface>
+	<cc:implementation>
+
+    
+<h:outputScript library="js" name="jquery.mask.js"  />					
+	
+	<div class="form-group">
+				<h:outputLabel value="#{cc.attrs.label}"  />
+<h:inputText id="IBAN"	styleClass="form-control #{cc.attrs.styleClass}" value="#{cc.attrs.value}" required="true" requiredMessage="kkkk" /><h:message for="IBAN"></h:message>
+</div>
+<h:outputScript>$(function(){$('##{cc.clientId}_IBAN').mask('SS00 0000 0000 0000 0000 00', {
+    placeholder: '____ ____ ____ ____ ____ __'
+  }); });</h:outputScript>
+
+</cc:implementation>
+</ui:component>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>	
+     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+	<h:outputStylesheet name="bootstrap.min.css" library="css" />
+    <h:outputStylesheet name="bootstrap-theme.min.css" library="css" />
+   
+    <h:outputStylesheet name="abank-menu.css" library="css" />
+    <h:outputStylesheet name="site-common.css" library="css" />
+    
+    <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+    <h:outputScript library="js" name="bootstrap.min.js" />
+    
+    <script>
+    $(function(){
+    
+    	  $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+    	        // Avoid following the href location when clicking
+    	        event.preventDefault(); 
+    	        // Avoid having the menu to close when clicking
+    	        event.stopPropagation(); 
+    	        // If a menu is already open we close it
+    	        //$('ul.dropdown-menu [data-toggle=dropdown]').parent().removeClass('open');
+    	        // opening the one you clicked on
+    	        $(this).parent().addClass('open');
+
+    	        var menu = $(this).parent().find("ul");
+    	        var menupos = menu.offset();
+    	      
+    	        if ((menupos.left + menu.width()) + 30 > $(window).width()) {
+    	            var newpos = - menu.width();      
+    	        } else {
+    	            var newpos = $(this).parent().width();
+    	        }
+    	        menu.css({ left:newpos });
+
+    	    });
+    })
+   
+  
+    </script>
+    </h:head>
+
+    <h:body>
+<div class="container" style="padding: 50px;">
+	 <div id="header">
+		<ui:insert name="header" >
+		  <ui:include src="/PageTemplates/commonHeader.xhtml" />
+		</ui:insert>
+	</div>
+
+	   
+
+ 		<div id="content">
+	  	<ui:insert name="content" >
+	 	  <ui:include src="/PageTemplates/commonContent.xhtml" />
+	   	</ui:insert>
+	    </div>
+
+	    <div id="footer">
+	    	<ui:insert name="footer" >
+	    	  <ui:include src="/PageTemplates/commonFooter.xhtml" />
+	    	</ui:insert>
+    	 </div>
+
+       </div>  
+
+
+		 <div id="popupcontent">
+	    	<ui:insert name="popupcontent" >	
+	    	
+	    	</ui:insert>
+    	 </div>
+    	 
+    	 
+    	 
+		
+
+    </h:body>
+</html>

@@ -1,0 +1,33 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://java.sun.com/jsf/composite">
+	
+	
+	<cc:interface>
+		<cc:attribute name="value" shortDescription="Date Area" required="true"/>		
+		<cc:attribute name="Format" default="yyyy-MM-dd" required="false"></cc:attribute>
+		<cc:attribute name="styleClass" required="false" />
+	</cc:interface>
+	<cc:implementation>
+
+    
+               <h:outputScript library="js" name="AmountTextbox/jquery.number.js"  />					
+				
+					<h:inputText 
+					id="amount" 	
+					styleClass="form-control #{cc.attrs.styleClass}" 
+					converter="MoneyConverter"		
+					value="#{cc.attrs.value}"  
+					/>
+					
+					 
+                               
+                                
+                                 
+					
+<h:outputScript>$(function(){$('##{cc.clientId}_amount').number(true,2); });</h:outputScript>
+
+</cc:implementation>
+</ui:component>

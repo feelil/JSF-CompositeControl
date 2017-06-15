@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:my="http://java.sun.com/jsf/composite/components">
+    
+    
+<h:body>
+		
+	<ui:composition template="/PageTemplates/masterPage.xhtml">
+
+		<ui:define name="content">
+	        <script>
+    $(function(){
+    
+    	
+    	$("#ShowModal" ).click(function() {    	
+    	
+       $("#iframeCenter").attr("src","http://localhost:8080/CallCenterWeb/faces/campaign/mtvcampaign/mtvcampaign.xhtml");
+    	
+    	$('#myModal').modal('show');
+    	
+    	});
+    })
+   
+  
+    </script>
+		<h:form>
+		<f:event listener="#{moneyOrderBean.initConversation}"  type="preRenderView"></f:event>
+			
+				<my:AccountComponent id="drpSourceAccount" 
+				 CurrencyCode="YTL" 
+				 ajaxEventListener="#{moneyOrderBean.listen}"
+				 value="#{moneyOrderBean.sourceAccount}" >
+				 </my:AccountComponent>                                           
+                      
+			
+			<div class="form-group">
+				<h:outputLabel value="Tarih" />
+				<my:DatePickerComponent value="#{moneyOrderBean.selectedDate}"></my:DatePickerComponent>
+				
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Havale Tipi"  />
+				
+				<h:selectOneRadio styleClass="radioButtonSpace" 
+			
+				 
+				 value="#{moneyOrderBean.orderType}" layout="lineDirection" >				
+					<f:selectItem  itemValue="toiban" itemLabel="IBAN'a" />
+					<f:selectItem itemValue="toaccount" itemLabel="Hesaba" />	
+								
+				</h:selectOneRadio>
+			</div>
+			
+			<my:IBANTextBox  value="#{moneyOrderBean.targetIBAN}"  />
+			
+			
+			<div class="form-group">
+				<h:outputLabel value="Tutar"  />
+				
+				<my:AmountTextBox value="#{moneyOrderBean.amount}" id="txtamount"></my:AmountTextBox>
+			</div>
+			<div class="form-group">
+			
+				<h:outputLabel value="Açıklama"  />
+				<h:inputText value="#{moneyOrderBean.explanation}"  styleClass="form-control"></h:inputText>
+			</div>
+			<div class="form-group">
+				<h:commandButton value="Devam" action="#{moneyOrderBean.Confirm}"
+					styleClass="btn btn-primary" />
+			</div>
+			
+			<div>
+            <button type="button" id="ShowModal" class="btn btn-info btn-lg">Open Modal</button>
+          
+
+      
+       </div>
+				  <!-- Modal -->
+
+ 			
+     
+	   
+				  
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"></button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">        
+  	<iframe id="iframeCenter" width="500px"	src=""  height="500px" frameborder="1" />
+  	          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+		
+		</h:form>
+	</ui:define>
+	
+	
+
+     
+
+	</ui:composition>
+
+</h:body>
+</html>

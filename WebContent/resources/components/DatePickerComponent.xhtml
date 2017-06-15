@@ -1,0 +1,33 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://java.sun.com/jsf/composite">
+	
+	
+	<cc:interface>
+		<cc:attribute name="value" shortDescription="Date Area" required="true"/>		
+		<cc:attribute name="DateFormat" default="yyyy-MM-dd" required="false"></cc:attribute>
+		<cc:attribute name="styleClass" required="false" />
+	</cc:interface>
+	<cc:implementation>
+
+ <h:outputStylesheet name="DatePicker/datepicker.css" library="css" target="head"  />    
+<h:outputScript library="js" name="DatePicker/bootstrap-datepicker.js"  />
+
+
+<div class="input-append date" id="#{cc.clientId}_datepicker"  data-date="2017-05-22"
+					data-date-format="yyyy-mm-dd">
+					<h:inputText 
+					styleClass="form-control #{cc.attrs.styleClass}"
+					value="#{cc.attrs.value}" >
+					<f:convertDateTime pattern="#{cc.attrs.DateFormat}" />
+					</h:inputText>
+					<span class="add-on"><i class="icon-th"></i></span>
+				</div>
+			
+		
+	<h:outputScript>$(function(){$('##{cc.clientId}_datepicker').datepicker({locale : 'tr',	autoclose: true	});});</h:outputScript>
+
+</cc:implementation>
+</ui:component>

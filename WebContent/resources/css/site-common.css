@@ -1,0 +1,16 @@
+
+.radioButtonSpace table tbody td { padding-right:50px;}
+radioButtonSpace input[type=checkbox], input[type=radio] {margin-right: 10px; margin-left: 5px}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+#content{
+	
+	padding-top: 30px;
+}

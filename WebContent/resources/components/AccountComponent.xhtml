@@ -1,0 +1,55 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://java.sun.com/jsf/composite">
+
+	<cc:interface componentType="AccountComponent">
+		<cc:attribute name="value" type="com.abank.pojo.Account" shortDescription="Account Class" />
+		<cc:attribute name="CurrencyCode" />
+		<cc:clientBehavior name="accountseleted" event="change"		targets="drpAccount" />		
+	    <cc:attribute name="ajaxEventListener" method-signature="void f1(javax.faces.event.AjaxBehaviorEvent)" />
+	</cc:interface>
+
+	<cc:implementation>
+		<f:event type="postAddToView" listener="#{cc.init}" />
+		<h:outputStylesheet library="css" name="selec2.css" target="head" />		 
+		<h:outputScript library="js" name="select2.full.js" target="head" />
+		<h:outputScript library="js" name="AccountComponent.js" target="head" />
+
+		<h:outputScript>
+		 
+	   var accountdata_#{cc.clientId}=#{cc.GetJsonFromObject()};
+		var data = $.map(accountdata_#{cc.clientId}, function (obj){ obj.id = obj.id || obj.accountId; obj.text = obj.text || obj.ibanNumber;   return obj;	});
+	     jQuery(function()
+	     {$('##{cc.clientId}_drpAccount').select2({
+	     
+	     data: accountdata_#{cc.clientId},
+  		 templateResult: formatState,
+  		 templateSelection: template,
+  		 minimumResultsForSearch: Infinity  
+  		 					
+		 });
+  			});
+		</h:outputScript>
+ 
+		<div class="form-group">
+				<h:outputLabel value="Hesap" />
+				<div></div>
+		<h:selectOneMenu id="drpAccount"  width="75%"
+			value="#{cc.attrs.value}" converter="AccountConverter"
+			styleClass="form-control">
+			<f:selectItems var="myaccount" value="#{cc.accounts}"
+				itemLabel="#{myaccount.ibanNumber}" itemValue="#{myaccount}" />
+			<f:ajax event="change" 	listener="#{cc.attrs.ajaxEventListener}"	execute="@form">
+			</f:ajax>
+		</h:selectOneMenu>
+		</div>
+
+
+
+
+
+	</cc:implementation>
+</ui:component>
+<!--  -->
